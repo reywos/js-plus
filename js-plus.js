@@ -16,10 +16,40 @@
 			 * Methods for dom working ----------------------------------------------------------------
 			 */
 
-			dom(domElement)  {
-		    var all = document.querySelectorAll(domElement);
-		    return all.length > 1 ? all : document.querySelector(domElement);
+			dom(el)  {
+		    var all = document.querySelectorAll(el);
+		    return all.length > 1 ? all : document.querySelector(el);
 			},
+
+			hide(el) {
+				var el = this.dom(el);
+				return el.length > 1 ? el.forEach(i => i.style.display = 'none') : el.style.display = 'none';
+			},
+
+			fadeOut(el, spd, degree) {
+				if(!degree) var degree = 0;
+				if(!spd) var spd = .5;
+				var el = this.dom(el);
+				function addOp(el, val) {el.style.opacity = val;}
+				function addTran(el, val) {el.style.transition = `${val}s`;}
+				if(el.length > 1) {
+					el.forEach(i => {
+						addTran(i, spd);
+					});
+					setTimeout(() => {
+						el.forEach(i => {
+							addOp(i, degree);
+						});
+					}, 1);
+				} else {
+					addTran(el, spd)
+					setTimeout(() => {
+						addOp(el, degree);
+					}, 1);
+				}
+			},
+
+
  
 
 
