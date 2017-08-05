@@ -27,6 +27,8 @@
 			},
 
 			fade(el, spd, dgr) {
+				if(spd === undefined) throw new Error('Fade: argument "speed" should not be empty');
+				if(dgr === undefined) throw new Error('Fade: argument "degree" should not be empty');
 				if(typeof dgr !== 'number') throw new Error('Fade: argument "degree" should be a number');
 				if(typeof spd !== 'number') throw new Error('Fade: argument "speed" should be a number');
 				var el = this.dom(el);
