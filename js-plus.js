@@ -9,6 +9,28 @@
  */
 
 (function(global) {
+	// Private functions
+	// Tests
+	function checkEmpty(method, arg, argName) {
+		if(arg === undefined) {
+			throw new Error(`${method}: argument "${argName}" should not be empty`);
+		}
+	}	
+
+	// type: 'str','num'
+	function checkType(method, arg, argName, type) {
+		if (type === 'str') {
+			if(typeof arg !== 'string') {
+				throw new Error(`${method}: argument "${argName}" should be a string`);
+			}
+		} else if (type === 'num') {
+			if(typeof arg !== 'number') {
+				throw new Error(`${method}: argument "${argName}" should be a number`);
+			}
+		}
+
+	}
+
 	function Module() {
 		return {
 
@@ -17,6 +39,7 @@
 			 */
 
 			dom(el)  {
+				checkType('dom', el, 'el', 'str');
 		    var all = document.querySelectorAll(el);
 		    return all.length > 1 ? all : document.querySelector(el);
 			},
@@ -26,14 +49,54 @@
 				return el.length > 1 ? el.forEach(i => i.style.display = 'none') : el.style.display = 'none';
 			},
 
-			fade(el, spd, dgr) {
-				if(spd === undefined) throw new Error('Fade: argument "speed" should not be empty');
-				if(dgr === undefined) throw new Error('Fade: argument "degree" should not be empty');
-				if(typeof dgr !== 'number') throw new Error('Fade: argument "degree" should be a number');
-				if(typeof spd !== 'number') throw new Error('Fade: argument "speed" should be a number');
+			show(el) {
 				var el = this.dom(el);
+				if (el.length > 1) {
+					el.forEach(i => {
+						 i.style.display = 'block';
+						 i.style.opacity = 1;
+					});
+				} else {
+					el.style.display = 'block';
+					el.style.opacity = 1;
+				}
+			},
+
+			toggle(el) {
+				checkEmpty('Toggle', el, 'el');
+				checkType('Toggle', el, 'el', 'string');
+				function block(el) {return el.style.display = 'block';}
+				function none(el) {return el.style.display = 'none';}
+				var el = this.dom(el);
+				if (el.length > 1) {
+					el.forEach(i => {
+						if (i.style.display != 'none') {
+							none(i);
+						} else {
+							block(i);
+						}
+					});
+				} else {
+					if (el.style.display == 'block') {
+						none(el);
+					} else {
+						block(el);
+					}
+				}
+			},
+
+			fade(el, spd, dgr) {
+				checkEmpty('fade', el, 'el');
+				checkEmpty('fade', spd, 'spd');
+				checkEmpty('fade', dgr, 'dgr');
+				checkType('fade', el, 'el', 'string');
+				checkType('fade', spd, 'spd', 'number');
+				checkType('fade', dgr, 'dgr', 'number');
+				
 				function addOp(el, val) {el.style.opacity = val;}
 				function addTran(el, val) {el.style.transition = `${val}s`;}
+				var el = this.dom(el);
+				
 				if(el.length > 1) {
 					el.forEach(i => {
 						addTran(i, spd);
