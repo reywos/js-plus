@@ -26,25 +26,23 @@
 				return el.length > 1 ? el.forEach(i => i.style.display = 'none') : el.style.display = 'none';
 			},
 
-			fadeOut(el, spd, degree) {
-				if(!degree) var degree = 0;
-				if(!spd) var spd = .5;
+			fade(el, spd, dgr) {
+				if(typeof dgr !== 'number') throw new Error('Fade: argument "degree" should be a number');
+				if(typeof spd !== 'number') throw new Error('Fade: argument "speed" should be a number');
 				var el = this.dom(el);
 				function addOp(el, val) {el.style.opacity = val;}
 				function addTran(el, val) {el.style.transition = `${val}s`;}
 				if(el.length > 1) {
 					el.forEach(i => {
 						addTran(i, spd);
+						setTimeout(() => {
+							addOp(i, dgr);
+						}, 1);
 					});
-					setTimeout(() => {
-						el.forEach(i => {
-							addOp(i, degree);
-						});
-					}, 1);
 				} else {
 					addTran(el, spd)
 					setTimeout(() => {
-						addOp(el, degree);
+						addOp(el, dgr);
 					}, 1);
 				}
 			},
