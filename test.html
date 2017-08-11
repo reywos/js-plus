@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js-plus.js"></script>
+</head>
+<body>
+	
+  <ul id="mainul">
+  	<li class="mainli">dsf</li>
+  	<li class="mainli">sdaf</li>
+  </ul>
+  <button style="display: block;" onclick="jP.hide('li')">Hide</button>
+  <button style="display: block;" onclick="jP.show('li')">Show</button>
+  <button style="display: block;" onclick="jP.fade('li', 1, 0)">Fade Out</button>
+  <button style="display: block;" onclick="jP.fade('li', 1, 1)">Fade In</button>
+  <button style="display: block;" onclick="jP.toggle('li')">Toggle</button>
+
+<script type="text/javascript">
+var strings = ['кришна', 'кришна', 'харе', 'харе',
+  'харе','кришна', 'кришна', '8-()', 
+  'харе', 'кришна', 'кришна', '8-()'
+];
+var salaries = {
+  '1': 100,
+  '2': 300,
+  '3': 250
+};
+var users = [
+  { name: "Вася", surname: 'Иванов', age: 20 }, 
+  { name: "Петя", surname: 'Чапаев', age: 25 }, 
+  { name: "Маша", surname: 'Медведева', age: 18 }, 
+  { name: "Маша", surname: 'Медведева', age: 1}
+];
+
+
+console.log('******** Array *********')
+console.log("jP.lastOf([1, 2, 3, 4, 5]): " + jP.lastOf([1, 2, 3, 4, 5]) );
+console.log("jP.sumOfArr([1, 2, 3, 4, 5]): " + jP.sumOfArr([1, 2, 3, 4, 5]) );
+console.log("jP.randomOf([1, 2, 3, 4, 5]): " + jP.randomOf([1, 2, 3, 4, 5]) );
+console.log("jP.shuffle([1, 2, 3, 4, 5]): " + jP.shuffle([1, 2, 3, 4, 5]) );
+console.log("jP.reverse([1, 2, 3, 4, 5]): " + jP.reverse([1, 2, 3, 4, 5]) );
+console.log("jP.unique(strings): " + jP.unique(strings) );
+console.log("jP.lenOfArrVals(['Есть', 'жизнь', 'на', 'Марсе']): " + jP.lenOfArrVals(['Есть', 'жизнь', 'на', 'Марсе']) );
+console.log("jP.sortArr(['HTML', 'Ajax', 'JavaScript', 'CSS']): " + jP.sortArr(["HTML", 'Ajax', "JavaScript", "CSS"]) );
+console.log("jP.sortArrByRange([1, 2, 3, 4, 5], 2, 3) ): " + jP.sortArrByRange([1, 2, 3, 4, 5], 2, 3) );
+console.log("jP.evenInArr([1, 2, 3, 4, 5]): " + jP.evenInArr([1, 2, 3, 4, 5]) );
+console.log("jP.missing([2, 3, 4]): " + jP.missing([2, 3, 4]) );
+console.log("jP.missing([5, 1, 4, 2, 7]): " + jP.missing([5, 1, 4, 2, 7]) );
+console.log("jP.missing([1, 2, 3, 4]): " + jP.missing([1, 2, 3, 4]) );
+console.log('******** Array *********')
+
+console.log(' ');
+
+console.log('******** String *********')
+console.log("jP.camelCase('list-style-image'): " + jP.camelCase('list-style-image') );
+console.log("jP.capitalize('string'): " + jP.capitalize('string') );
+console.log("jP.isPolindrome('abcdcba'): " + jP.isPolindrome('abcdcba') );
+console.log('******** String *********')
+
+console.log(' ');
+
+console.log('******** Numbers *********')
+console.log("jP.sumOfN(4): " + jP.sumOfN(4) );
+console.log("jP.factorial(3): " + jP.factorial(3) );
+console.log("jP.pow(2, 12): " + jP.pow(2, 12) );
+console.log("jP.decimal(12340324342.3343242342342323232135): " + jP.decimal(12340324342.3343242342342323232135) );
+console.log("jP.decimal(123456789123456.12): " + jP.decimal(123456789123456.12) );
+console.log("jP.decimal(1.2): " + jP.decimal(1.2) );
+console.log("jP.decimal(-1.2): " + jP.decimal(-1.2) );
+console.log("jP.randomNum(2, 4): " + jP.randomNum(2, 4) );
+console.log('******** Numbers *********')
+
+console.log(' ');
+
+console.log('******** Object *********')
+console.log("jP.maxOfObj(salaries): " + jP.maxOfObj(salaries) );
+console.log("jP.isEmpty(salaries): " +  jP.isEmpty(salaries) );
+console.log("jP.sumOfObj(salaries): " +  jP.sumOfObj(salaries) );
+var clone = {};
+jP.cloneObj(salaries, clone)
+console.log("jP.cloneObj(salaries, clone): " + clone);
+console.log("jP.sortObjsByField(users, 'age'): " + jP.sortObjsByField(users, 'age') );
+console.log('******** Object *********')
+
+
+
+</script>
+</body>
+</html>
+
